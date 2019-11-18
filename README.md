@@ -266,10 +266,4 @@ Session Affinity:       None
 
 Now check for the node port, here it is 32756, and go to the browser,
 
-```
-masterip:32756
-```
 
-
-
-```
