@@ -16,7 +16,7 @@ VirtualBox: https://www.virtualbox.org/wiki/Downloads
 
 Vagrant:  https://www.vagrantup.com/downloads.html
 
-Git: https://git-scm.com/  
+Git:    https://git-scm.com/  
 
 
 clone the repo on your laptop using git git clone https://github.com/dean-houari/Mastering-Kubernetes.git
@@ -25,29 +25,30 @@ Launch environments with Vagrant
 
 cd K8s
  
-vagrant up
+> vagrant up
  
-Login to nodes
+Login to all the nodes:
+#######################
 
 Launch three different consoles or terminals for each VM  to login to the K8s nodes. One will be the master and the 2 others will be the worker nodes where the pods with containers will be launched and managed.
 
 On the first console:
 
-vagrant ssh Master
+> vagrant ssh Master
 
-sudo su
+> sudo su
  
 On the second console:
 
-vagrant ssh Slave-1
+> vagrant ssh Slave-1
 
-sudo su
+> sudo su
 
 On the third console:
 
-vagrant ssh Slave-2
+> vagrant ssh Slave-2
 
-sudo su
+> sudo su
 
 
 
