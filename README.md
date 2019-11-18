@@ -29,14 +29,17 @@ Launch three different consoles for each VM  to login to the K8s nodes. One will
 On the first console:
 
 vagrant ssh kubemaster
+
 sudo su
  
 On the second console:
 
 vagrant ssh kubenode-01
+
 sudo su
 
 On the third console:
 
 vagrant ssh kubenode-02
+
 sudo su
