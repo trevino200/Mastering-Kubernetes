@@ -29,7 +29,9 @@ clone the repo on your laptop using git
 
 Launch environments with Vagrant on your laptop console or terminal:
 
-<For windows user, get putty or Conem as terminal to manage your cluster> https://www.puttygen.com/download-putty
+For windows user, get putty or Conem as terminal to manage your cluster:
+https://www.puttygen.com/download-putty
+https://www.fosshub.com/ConEmu.html
 
 
 > cd K8s
