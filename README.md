@@ -58,6 +58,14 @@ Bringing machine 'Slave-2' up with 'virtualbox' provider...
     Master: Progress: 13% (Rate: 353k/s, Estimated time remaining: 0:14:45)
 ...
 
+If any of the nodes failed to provision or is not configured correct, please delete the node using the command:
+
+> vagrant destroy or > vagrant destroy <node>
+ 
+then start again:
+
+> vagrant up
+
 
 On the first terminal:
 
@@ -76,7 +84,6 @@ On the third terminal:
 > vagrant ssh Slave-2
 
 > sudo su
-
 
 
 STEP 2>> CONFIGURING AND BOOTSTRAPING YOUR KUBERNETES CLUSTER
