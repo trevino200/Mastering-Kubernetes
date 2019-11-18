@@ -39,6 +39,7 @@ https://www.fosshub.com/ConEmu.html
 > vagrant up
  
 Login to all the nodes by launching three different consoles or terminals for each VM from VirtualBox to login to the K8s nodes. One will be the master and the 2 others will be the worker nodes where the pods with containers will be launched and managed.
+Note: vagrant will download the ubuntu/xenial images when starting up and it may take some time depending on your network download speed.
 
 On the first terminal:
 
