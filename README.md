@@ -23,7 +23,8 @@ Vagrant:  https://www.vagrantup.com/downloads.html
 Git:    https://git-scm.com/  
 
 
-clone the repo on your laptop using git git clone https://github.com/dean-houari/Mastering-Kubernetes.git
+clone the repo on your laptop using git
+> git clone https://github.com/dean-houari/Mastering-Kubernetes.git
 
 Launch environments with Vagrant on your laptop console or terminal:
 
