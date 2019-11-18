@@ -7,6 +7,10 @@ The lab in this page will take you step by step for the configuration of a kuber
 The lab can be run on a windows or mac laptop. We will be running the kubernetes cluster on ubuntu linux using VMs on Virtualbox. we will automate the provisioning of the VMs using vagrant but if you want to configure them manually that is fine as well.
 The Ubuntu version for the lab is 16.04
 
+The first step to learn Kubernetes is to create your cluster on your laptop as it will allow to undertand the various processes and get acquinted with how the master orchestrate containers on the worker nodes. 
+
+The easiest way to quickly provision a 3 nodes K8s cluster is with KUBEADM and we will do that first.
+
 STEP 1 >>PROVISIONING 3 VMs FOR THE KUBERNETES CLUSTER
 ##########################################################
 
@@ -21,27 +25,27 @@ Git:    https://git-scm.com/
 
 clone the repo on your laptop using git git clone https://github.com/dean-houari/Mastering-Kubernetes.git
 
-Launch environments with Vagrant
+Launch environments with Vagrant on your laptop console or terminal:
 
 > cd K8s
  
 > vagrant up
  
-Login to all the nodes by launching three different consoles or terminals for each VM  to login to the K8s nodes. One will be the master and the 2 others will be the worker nodes where the pods with containers will be launched and managed.
+Login to all the nodes by launching three different consoles or terminals for each VM from VirtualBox to login to the K8s nodes. One will be the master and the 2 others will be the worker nodes where the pods with containers will be launched and managed.
 
-On the first console:
+On the first terminal:
 
 > vagrant ssh Master
 
 > sudo su
  
-On the second console:
+On the second terminal:
 
 > vagrant ssh Slave-1
 
 > sudo su
 
-On the third console:
+On the third terminal:
 
 > vagrant ssh Slave-2
 
