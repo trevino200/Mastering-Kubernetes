@@ -23,14 +23,11 @@ clone the repo on your laptop using git git clone https://github.com/dean-houari
 
 Launch environments with Vagrant
 
-cd K8s
+> cd K8s
  
 > vagrant up
  
-Login to all the nodes:
-#######################
-
-Launch three different consoles or terminals for each VM  to login to the K8s nodes. One will be the master and the 2 others will be the worker nodes where the pods with containers will be launched and managed.
+Login to all the nodes by launching three different consoles or terminals for each VM  to login to the K8s nodes. One will be the master and the 2 others will be the worker nodes where the pods with containers will be launched and managed.
 
 On the first console:
 
