@@ -60,12 +60,15 @@ Bringing machine 'Slave-2' up with 'virtualbox' provider...
 
 If any of the nodes failed to provision or is not configured correct, please delete the node using the command:
 
-> vagrant destroy or > vagrant destroy <node>
+> vagrant destroy 
+
+> vagrant destroy <node>
  
 then start again:
 
 > vagrant up
 
+SSH to the nodes using Vagrant SSH:
 
 On the first terminal:
 
@@ -84,6 +87,10 @@ On the third terminal:
 > vagrant ssh Slave-2
 
 > sudo su
+
+Verify your environment:
+- all nodes are UP
+- all nodes can ping each other
 
 
 STEP 2>> CONFIGURING AND BOOTSTRAPING YOUR KUBERNETES CLUSTER
