@@ -13,11 +13,11 @@ Download this github repository and cd into the vagrant folder
 
 CD into vagrant directory
 
-`> cd Mastering-Kubernetes/LAB/Vagrant
+> cd Mastering-Kubernetes/LAB/Vagrant
 
 Run Vagrant up
 
-`vagrant up`
+> vagrant up
 
 
 This does the below:
@@ -27,13 +27,13 @@ This does the below:
 
 - Set's IP addresses in the range 192.168.5
 
-    | VM           |  VM Name               | Purpose       | IP           | Forwarded Port   |
-    | ------------ | ---------------------- |:-------------:| ------------:| ----------------:|
-    | master-1     | kubernetes-ha-master-1 | Master        | 192.168.5.11 |     2711         |
-    | master-2     | kubernetes-ha-master-2 | Master        | 192.168.5.12 |     2712         |
-    | worker-1     | kubernetes-ha-worker-1 | Worker        | 192.168.5.21 |     2730         |
-    | worker-2     | kubernetes-ha-worker-2 | Worker        | 192.168.5.22 |     2721         |
-    | lb           | kubernetes-ha-lb       | LoadBalancer  | 192.168.5.30 |     2722         |
+    | VM           |  VM Name               | Purpose       | IP            | Forwarded Port   |
+    | ------------ | ---------------------- |:-------------:| -------------:| ----------------:|
+    | master-1     | kubernetes-ha-master-1 | Master        | 192.168.50.11 |     2711         |
+    | master-2     | kubernetes-ha-master-2 | Master        | 192.168.50.12 |     2712         |
+    | workernode-1 | kubernetes-ha-worker-1 | Worker Node   | 192.168.50.21 |     2730         |
+    | workernode-2 | kubernetes-ha-worker-2 | Worker Node   | 192.168.50.22 |     2721         |
+    | lb           | kubernetes-ha-lb       | LoadBalancer  | 192.168.50.30 |     2722         |
 
     > These are the default settings. These can be changed in the Vagrant file
 
@@ -43,7 +43,7 @@ This does the below:
 - Install's Docker on Worker nodes
 - Runs the below command on all nodes to allow for network forwarding in IP Tables.
   This is required for kubernetes networking to function correctly.
-    > sysctl net.bridge.bridge-nf-call-iptables=1
+  > sysctl net.bridge.bridge-nf-call-iptables=1
 
 
 ## SSH to the nodes
@@ -80,25 +80,9 @@ Vagrant generates a private key for each of these VMs. It is placed under the .v
 
 If any of the VMs failed to provision, or is not configured correct, delete the vm using the command:
 
-`vagrant destroy <vm>`
+> vagrant destroy <vm>
 
 Then reprovision. Only the missing VMs will be re-provisioned
 
-`vagrant up`
+> vagrant up
 
-
-Sometimes the delete does not delete the folder created for the vm and throws the below error.
-
-VirtualBox error:
-
-    VBoxManage.exe: error: Could not rename the directory 'D:\VirtualBox VMs\ubuntu-bionic-18.04-cloudimg-20190122_1552891552601_76806' to 'D:\VirtualBox VMs\kubernetes-ha-worker-2' to save the settings file (VERR_ALREADY_EXISTS)
-    VBoxManage.exe: error: Details: code E_FAIL (0x80004005), component SessionMachine, interface IMachine, callee IUnknown
-    VBoxManage.exe: error: Context: "SaveSettings()" at line 3105 of file VBoxManageModifyVM.cpp
-
-In such cases delete the VM, then delete teh VM folder and then re-provision
-
-`vagrant destroy <vm>`
-
-`rmdir "<path-to-vm-folder>\kubernetes-ha-worker-2"`
-
-`vagrant up`
