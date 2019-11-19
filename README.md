@@ -1,4 +1,4 @@
-Mastering Kubernetes " The Hard Way"
+## Mastering Kubernetes " The Hard Way"
 
 Mastering Kubernetes by installing a Kubernetes cluster the hard way. This is based on Kelsey Hightower book on installing Kubernetes the hard way.
 Kelsey showed how to install the cluster on GCP and in this lab, I will guide you on how to install on your laptop using virtual box running Ubuntu.
