@@ -2,24 +2,8 @@ Mastering Kubernetes " The Hard Way"
 
 Mastering Kubernetes by installing a Kubernetes cluster the hard way. This is based on Kelsey Hightower book on installing Kubernetes the hard way.
 Kelsey showed how to install the cluster on GCP and in this lab, I will guide you on how to install on your laptop using virtual box running Ubuntu.
-
-# Provisioning Compute Resources
-
-Note: You must have VirtualBox and Vagrant configured at this point
-
-Download this github repository and cd into the vagrant folder
-
-> git clone https://github.com/dean-houari/Mastering-Kubernetes.git
-
-CD into vagrant directory
-
-> cd Mastering-Kubernetes/LAB/Vagrant
-
-Run Vagrant up
-
-> vagrant up
-
-Vagrant will provision 5 VMs which will be used to create the Kubernetes cluster. The cluster will be composed of 2 masters in a HA configuration, 2 worker nodes and 1 load balancer fronting the master nodes. The load balancer distributed the API requests from the worker nodes to each master node API server.
+The kubernetes cluster will use 5 VMs in total in this lab. You will have HA between 2 master nodes, 2 worker nodes and 1 load balancer to front the master nodes. 
+Vagrant will automate the provisioning of the 5 VMs which will be used to create the Kubernetes cluster. The cluster will be composed of 2 masters in a HA configuration, 2 worker nodes and 1 load balancer fronting the master nodes. The load balancer distributed the API requests from the worker nodes to each master node API server.
 
 The topology details are as follow: 
 Note: you can change hostnames and networking paramaters in the Vagrantfile.
@@ -35,6 +19,35 @@ Note: you can change hostnames and networking paramaters in the Vagrantfile.
     | lb           | LoadBalancer  | Load Balancer | 192.168.50.30  |     2722         |
     
 
+# Provision your environment to host the Kubernetes HA cluster:
+
+We will be using Virtual Box for the virtual machines and Vagrant to automate the provisioning.
+
+First please install virtualbox, vagrant and git on your laptop
+
+VirtualBox: https://www.virtualbox.org/wiki/Downloads
+
+Vagrant: https://www.vagrantup.com/downloads.html
+
+Git: https://git-scm.com/
+
+Download this github repository using git:
+
+> git clone https://github.com/dean-houari/Mastering-Kubernetes.git
+
+This will copy all the lab repo to your laptop in a location of your choice. It will do that in your home dir by default.
+
+For windows user, get putty or Conem as terminal to manage your cluster: https://www.puttygen.com/download-putty https://www.fosshub.com/ConEmu.html
+
+go into the Vagrant directory
+
+> cd Mastering-Kubernetes/LAB/Vagrant
+
+from your laptop terminal, run the following command which will bring up all the kubernetes cluster nodes:
+
+> vagrant up
+
+Note:
 - a DNS entry has been added to the /etc/hosts file has been added for internet connectivity
     > DNS: 8.8.8.8
 - Docker will be installed on each worker nodes or minions.
