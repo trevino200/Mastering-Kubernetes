@@ -44,19 +44,18 @@ Note: you can change hostnames and networking paramaters in the Vagrantfile.
 
 There are two ways to SSH into the nodes:
 
-### 1. SSH using Vagrant
+### 1. SSH to the nodes
 
-  From the directory you ran the `vagrant up` command, run `vagrant ssh <vm>` for example `vagrant ssh master-1`.
-  > Note: Use VM field from the above table and not the vm name itself.
+  In the Vagrant dir, run the following commands,
+  
+  > vagrant ssh <nodename> 
+  
+  > sudo su
+  
+- Note: You can ssh directly to each node but the Username and password based SSH is disabled by default. you would have to use the    private key which is created by Vagrant and is located at the following location: 
+the virtual machine name is the virtual box VM name and NOT the ubuntu hostname
 
-### 2. SSH Using SSH Client Tools
-
-Use your favourite SSH Terminal tool (putty).
-
-Use the above IP addresses. Username and password based SSH is disabled by default.
-Vagrant generates a private key for each of these VMs. It is placed under the .vagrant folder (in the directory you ran the `vagrant up` command from) at the below path for each VM:
-
-**Private Key Path:** `.vagrant/machines/<machine name>/virtualbox/private_key`
+**Private Key Path:** `.vagrant/machines/< virtual machine name>/virtualbox/private_key`
 
 **Username:** `vagrant`
 
@@ -65,14 +64,14 @@ Vagrant generates a private key for each of these VMs. It is placed under the .v
 
 - Ensure all VMs are up
 - Ensure VMs are assigned the above IP addresses
-- Ensure you can SSH into these VMs using the IP and private keys
+- Ensure you can SSH into these VMs 
 - Ensure the VMs can ping each other
-- Ensure the worker nodes have Docker installed on them. Version: 18.06
+- Ensure the worker nodes or minions have Docker installed on them. Version: 18.06
   > command `sudo docker version`
 
-## Troubleshooting Tips
+## Maintenance
 
-If any of the VMs failed to provision, or is not configured correct, delete the vm using the command:
+If you would like to start over or if any of the VMs failed to provision you can delete the VM with the following command:
 
 > vagrant destroy <vm>
 
