@@ -19,31 +19,25 @@ Run Vagrant up
 
 > vagrant up
 
+Vagrant will provision 5 VMs which will be used to create the Kubernetes cluster. The cluster will be composed of 2 masters in a HA configuration, 2 worker nodes and 1 load balancer fronting the master nodes. The load balancer distributed the API requests from the worker nodes to each master node API server.
 
-This does the below:
+The topology details are as follow: 
+Note: you can change hostnames and networking paramaters in the Vagrantfile.
 
-- Deploys 5 VMs - 2 Master, 2 Worker and 1 Loadbalancer with the name 'kubernetes-ha-* '
-    > This is the default settings. This can be changed at the top of the Vagrant file
+- The IP address range is 192.168.50.0/24
 
-- Set's IP addresses in the range 192.168.5
+    | hostname     |  VM Name      | Role          | IP            | Forwarded Port   |
+    | ------------ | --------------|:-------------:| -------------:| ----------------:|
+    | master-1     | Master-1      | Master        | 192.168.50.101 |     2711         |
+    | master-2     | Master-2      | Master        | 192.168.50.102 |     2712         |
+    | workernode-1 | Minion-1      | Worker Node   | 192.168.50.201 |     2730         |
+    | workernode-2 | Minion-2      | Worker Node   | 192.168.50.202 |     2721         |
+    | lb           | LoadBalancer  | Load Balancer | 192.168.50.30  |     2722         |
+    
 
-    | VM           |  VM Name               | Purpose       | IP            | Forwarded Port   |
-    | ------------ | ---------------------- |:-------------:| -------------:| ----------------:|
-    | master-1     | kubernetes-ha-master-1 | Master        | 192.168.50.11 |     2711         |
-    | master-2     | kubernetes-ha-master-2 | Master        | 192.168.50.12 |     2712         |
-    | workernode-1 | kubernetes-ha-worker-1 | Worker Node   | 192.168.50.21 |     2730         |
-    | workernode-2 | kubernetes-ha-worker-2 | Worker Node   | 192.168.50.22 |     2721         |
-    | lb           | kubernetes-ha-lb       | LoadBalancer  | 192.168.50.30 |     2722         |
-
-    > These are the default settings. These can be changed in the Vagrant file
-
-- Add's a DNS entry to each of the nodes to access internet
+- a DNS entry has been added to the /etc/hosts file has been added for internet connectivity
     > DNS: 8.8.8.8
-
-- Install's Docker on Worker nodes
-- Runs the below command on all nodes to allow for network forwarding in IP Tables.
-  This is required for kubernetes networking to function correctly.
-  > sysctl net.bridge.bridge-nf-call-iptables=1
+- Docker will be installed on each worker nodes or minions.
 
 
 ## SSH to the nodes
