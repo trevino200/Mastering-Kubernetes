@@ -1,4 +1,4 @@
-# Mastering Kubernetes
+# Mastering Kubernetes with Kubeadm
 
 Kubernetes or K8s is an open source container orchestration engine for automating the configuration, deployement and scaling of containers at large scale. The best way to truly master K8s is setup a cluster on your laptop, deploy pods with containers and test every possible option to scale and manage them.
 
