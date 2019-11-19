@@ -1,4 +1,4 @@
-## Mastering Kubernetes " The Hard Way"
+# Mastering Kubernetes " The Hard Way"
 
 Mastering Kubernetes by installing a Kubernetes cluster the hard way. This is based on Kelsey Hightower book on installing Kubernetes the hard way.
 Kelsey showed how to install the cluster on GCP and in this lab, I will guide you on how to install on your laptop using virtual box running Ubuntu.
@@ -19,7 +19,7 @@ Note: you can change hostnames and networking paramaters in the Vagrantfile.
     | lb           | LoadBalancer  | Load Balancer | 192.168.50.30  |     2722         |
     
 
-# Provision your environment to host the Kubernetes HA cluster:
+## Provision your environment to host the Kubernetes HA cluster:
 
 We will be using Virtual Box for the virtual machines and Vagrant to automate the provisioning.
 
@@ -43,6 +43,8 @@ go into the Vagrant directory
 
 > cd Mastering-Kubernetes/LAB/Vagrant
 
+### Bring up your environment
+
 from your laptop terminal, run the following command which will bring up all the kubernetes cluster nodes:
 
 > vagrant up
@@ -52,10 +54,6 @@ Note:
     > DNS: 8.8.8.8
 - Docker will be installed on each worker nodes or minions.
 
-
-## SSH to the nodes
-
-There are two ways to SSH into the nodes:
 
 ### 1. SSH to the nodes
 
