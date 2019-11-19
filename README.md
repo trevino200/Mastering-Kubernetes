@@ -10,13 +10,13 @@ Note: you can change hostnames and networking paramaters in the Vagrantfile.
 
 - The IP address range is 192.168.50.0/24
 
-    | hostname     |  VM Name      | Role          | IP            | Forwarded Port   |
-    | ------------ | --------------|:-------------:| -------------:| ----------------:|
-    | master-1     | Master-1      | Master        | 192.168.50.101 |     2711         |
-    | master-2     | Master-2      | Master        | 192.168.50.102 |     2712         |
-    | workernode-1 | Minion-1      | Worker Node   | 192.168.50.201 |     2730         |
-    | workernode-2 | Minion-2      | Worker Node   | 192.168.50.202 |     2721         |
-    | lb           | LoadBalancer  | Load Balancer | 192.168.50.30  |     2722         |
+    | hostname     |  VM Name                      | Role          | IP             | Forwarded Port   |
+    | ------------ | -----------------------------:| -------------:| ------------- :|-----------------:|
+    | master-1     | Kubernetes-Master-1           | Master        | 192.168.50.101 |     2711         |
+    | master-2     | Kubernetes-Master-2           | Master        | 192.168.50.102 |     2712         |
+    | minion-1     | Kubernetes-Workernode-1       | Worker Node   | 192.168.50.201 |     2730         |
+    | minion-2     | Kubernetes-Workernode-2       | Worker Node   | 192.168.50.202 |     2721         |
+    | lb           | LoadBalancer                  | Load Balancer | 192.168.50.30  |     2722         |
     
 
 ## Provision your environment to host the Kubernetes HA cluster:
