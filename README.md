@@ -38,45 +38,30 @@ go into the Vagrant directory
 ### Bring up your environment
 
 from your laptop terminal, run the following command which will bring up all the kubernetes cluster nodes:
+All vagrant command should be run under the Vagrant dir.
 
 > vagrant up
 
-Note:
-- a DNS entry has been added to the /etc/hosts file has been added for internet connectivity
-    > DNS: 8.8.8.8
-- Docker will be installed on each worker nodes or minions.
-
-
-### 1. SSH to the nodes
-
-  In the Vagrant dir, run the following commands,
+### 1. SSH to each node to verify your enviromnent:
   
   > vagrant ssh <nodename> 
   
-  > sudo su
+  The nodename is the Kubernetes node name and not the VBOX VM name.
   
-- Note: You can ssh directly to each node but the Username and password based SSH is disabled by default. you would have to use the    private key which is created by Vagrant and is located at the following location: 
-the virtual machine name is the virtual box VM name and NOT the ubuntu hostname
+  > sudo su
+ 
+ If you would like to ssh directly to the VM, you can use the vagrant private key but would recommend to just the vagrant ssh and open a terminal for each of the master and worker nodes. You can also ssh from one master node to all the other nodes using the ssh command providing you have copied the public ssh key to all nodes in the .ssh/authorized_keys file
+dockers has been installed only on the worker nodes as that is where containers are provisioned. You can verify that docker has been installed successfuly by running the command:
 
-**Private Key Path:** `.vagrant/machines/< virtual machine name>/virtualbox/private_key`
+> docker version 
 
-**Username:** `vagrant`
+## Resetting your environment 
 
+If you would like to start over or if any of the VMs failed to provision succesfully, you can delete the VM with the following command:
 
-## Verify Environment
+> vagrant destroy 
 
-- Ensure all VMs are up
-- Ensure VMs are assigned the above IP addresses
-- Ensure you can SSH into these VMs 
-- Ensure the VMs can ping each other
-- Ensure the worker nodes or minions have Docker installed on them. Version: 18.06
-  > command `sudo docker version`
-
-## Maintenance
-
-If you would like to start over or if any of the VMs failed to provision you can delete the VM with the following command:
-
-> vagrant destroy <vm>
+> vagrant destroy <nodename> 
 
 Then reprovision. Only the missing VMs will be re-provisioned
 
