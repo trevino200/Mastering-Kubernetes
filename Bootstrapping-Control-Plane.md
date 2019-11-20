@@ -262,4 +262,4 @@ curl  https://192.168.50.30:6443/version -k
 }
 ```
 
-Next: [Bootstrapping the Kubernetes Worker Nodes](Bootstrapping-Workers-Nodes.md)
+Next: [Bootstrapping the Kubernetes Worker Nodes](Bootstrapping-Worker-Nodes.md)
