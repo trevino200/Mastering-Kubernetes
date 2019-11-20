@@ -1,17 +1,14 @@
-# Provisioning a CA and Generating TLS Certificates
+## Provisioning a CA and Generating TLS Certificates
 
-In this lab you will provision a [PKI Infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure) using the popular openssl tool, then use it to bootstrap a Certificate Authority, and generate TLS certificates for the following components: etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
+In order to bootstrap the kubernetes control plane, we need to secure the communication between nodes using certificates. 
+you will have to provision a [PKI Infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure) using openssl or opencfssl tool and then use it to bootstrap a Certificate Authority, and generate TLS certificates for the following components:
+### etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
 
-# Where to do these?
-
-You can do these on any machine with `openssl` on it. But you should be able to copy the generated files to the provisioned VMs. Or just do these from one of the master nodes.
-
-In our case we do it on the master-1 node, as we have set it up to be the administrative client.
-
+You can do all this from one of the master node and then copy the generated files to the other nodes. For this lab we will use the master-1 node. 
 
 ## Certificate Authority
-
-In this section you will provision a Certificate Authority that can be used to generate additional TLS certificates.
+ 
+In this section you will provision a Certificate Authority that will be used to generate the TLS certificates.
 
 Create a CA certificate, then generate a Certificate Signing Request and use it to create a private key:
 
@@ -36,7 +33,7 @@ ca.key
 
 The ca.crt is the Kubernetes Certificate Authority certificate and ca.key is the Kubernetes Certificate Authority private key.
 You will use the ca.crt file in many places, so it will be copied to many places.
-The ca.key is used by the CA for signing certificates. And it should be securely stored. In this case our master node(s) is our CA server as well, so we will store it on master node(s). There is not need to copy this file to elsewhere.
+The ca.key is used by the CA for signing certificates and it should be securely stored. In this case our master node(s) is our CA server as well, so we will store it on master node(s). There is not need to copy this file to any other nodes.
 
 ## Client and Server Certificates
 
@@ -130,9 +127,10 @@ kube-scheduler.crt
 
 ### The Kubernetes API Server Certificate
 
-The kube-apiserver certificate requires all names that various components may reach it to be part of the alternate names. These include the different DNS names, and IP addresses such as the master servers IP address, the load balancers IP address, the kube-api service IP address etc.
+The kube-apiserver certificate requires all the names that various components may reach it to be part of the alternate names. These include all the DNS names and IP addresses such as the master nodes IP address, the load balancers IP address, the kube-api service IP address etc. 
+Beware: Any typo or mistake here in the names or IP addresses will cause the installation to fail.
 
-The `openssl` command cannot take alternate names as command line parameter. So we must create a `conf` file for it:
+The `openssl` command cannot take alternate names as command line parameter and a `conf` file has to be generated for it:
 
 ```
 cat > openssl.cnf <<EOF
@@ -150,9 +148,9 @@ DNS.2 = kubernetes.default
 DNS.3 = kubernetes.default.svc
 DNS.4 = kubernetes.default.svc.cluster.local
 IP.1 = 10.96.0.1
-IP.2 = 192.168.5.11
-IP.3 = 192.168.5.12
-IP.4 = 192.168.5.30
+IP.2 = 192.168.50.101
+IP.3 = 192.168.50.102
+IP.4 = 192.168.50.30
 IP.5 = 127.0.0.1
 EOF
 ```
@@ -230,9 +228,7 @@ service-account.crt
 ```
 
 
-## Distribute the Certificates
-
-Copy the appropriate certificates and private keys to each controller instance:
+## Distribute the following certificates to all master nodes using scp :.
 
 ```
 for instance in master-1 master-2; do
