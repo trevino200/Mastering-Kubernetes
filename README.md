@@ -13,3 +13,7 @@ Note: you can change hostnames and networking paramaters in the Vagrantfile.
   ![header image](https://github.com/dean-houari/Mastering-Kubernetes/blob/master/LAB/K8stopo.png)
        
 
+
+
+
+### Next Step: [Provision the lab environment for Kubernetes HA Cluster](Provision-the-Kubernetes-environment.md)
