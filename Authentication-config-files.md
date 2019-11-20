@@ -168,4 +168,4 @@ for instance in master-1 master-2; do
 done
 ```
 
-Next: [Generating the Data Encryption Config and Key](Encryption-Key.md)
+### Next: [Generating the Data Encryption Config and Key](Encryption-Key.md)
