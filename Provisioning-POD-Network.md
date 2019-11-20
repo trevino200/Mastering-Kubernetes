@@ -1,4 +1,4 @@
-# Provisioning Pod Network
+# Provisioning the Pod Network
 
 Kubernetes use a CNI or Container Network Interface to deploy a network overlay between all the nodes. There are many CNI flavors like flannel, Calico and Weave. For this lab, we will use the weave CNI - [weave](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/) as our networking option.
 
