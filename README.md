@@ -82,4 +82,4 @@ Then reprovision. Only the missing VMs will be re-provisioned
 
 > vagrant up
 
-## Next Step: [Provision the KPI infrastructure to secure communication to the API Server](Provision-the-KPI-infrastructure.md)
+### Next Step: [Provision the KPI infrastructure to secure communication to the API Server](Provision-the-KPI-infrastructure.md)
