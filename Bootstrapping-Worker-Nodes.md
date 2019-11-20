@@ -30,7 +30,7 @@ keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName = @alt_names
 [alt_names]
 DNS.1 = worker-1
-IP.1 = 192.168.5.21
+IP.1 = 192.168.50.201
 EOF
 
 openssl genrsa -out worker-1.key 2048
@@ -51,14 +51,14 @@ When generating kubeconfig files for Kubelets the client certificate matching th
 
 Get the kub-api server load-balancer IP.
 ```
-LOADBALANCER_ADDRESS=192.168.5.30
+LOADBALANCER_ADDRESS=192.168.50.30
 ```
 
 Generate a kubeconfig file for the first worker node:
 
 ```
 {
-  kubectl config set-cluster kubernetes-the-hard-way \
+  kubectl config set-cluster Mastering-Kubernetes \
     --certificate-authority=ca.crt \
     --embed-certs=true \
     --server=https://${LOADBALANCER_ADDRESS}:6443 \
@@ -71,7 +71,7 @@ Generate a kubeconfig file for the first worker node:
     --kubeconfig=worker-1.kubeconfig
 
   kubectl config set-context default \
-    --cluster=kubernetes-the-hard-way \
+    --cluster=Mastering-Kubernetes \
     --user=system:node:worker-1 \
     --kubeconfig=worker-1.kubeconfig
 
@@ -201,7 +201,7 @@ apiVersion: kubeproxy.config.k8s.io/v1alpha1
 clientConnection:
   kubeconfig: "/var/lib/kube-proxy/kubeconfig"
 mode: "iptables"
-clusterCIDR: "192.168.5.0/24"
+clusterCIDR: "192.168.50.0/24"
 EOF
 ```
 
@@ -242,17 +242,16 @@ EOF
 List the registered Kubernetes nodes from the master node:
 
 ```
-master-1$ kubectl get nodes --kubeconfig admin.kubeconfig
+master-1$ kubectl get nodes 
 ```
 
 > output
 
 ```
-NAME       STATUS     ROLES    AGE   VERSION
-worker-1   NotReady   <none>   93s   v1.13.0
+
 ```
 
 > Note: It is OK for the worker node to be in a NotReady state.
   That is because we haven't configured Networking yet.
 
-Next: [TLS Bootstrapping Kubernetes Workers](10-tls-bootstrapping-kubernetes-workers.md)
+Next: [Configuring kubectl for remote management](Kubectl.md)
