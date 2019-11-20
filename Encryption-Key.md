@@ -40,4 +40,4 @@ for instance in master-1 master-2; do
 done
 ```
 
-Next: [Bootstrapping the etcd Cluster](07-bootstrapping-etcd.md)
+### Next: [Bootstrapping the etcd Cluster](Bootstrapping-etcd.md)
