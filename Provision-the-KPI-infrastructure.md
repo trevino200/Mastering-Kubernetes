@@ -1,7 +1,7 @@
-## Provisioning a CA and Generating TLS Certificates
+## Securing the Kubernetes Cluster by Provisioning a Certificate Authority and Generating TLS Certificates
 
 In order to bootstrap the kubernetes control plane, we need to secure the communication between nodes using certificates. 
-you will have to provision a [PKI Infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure) using openssl or opencfssl tool and then use it to bootstrap a Certificate Authority, and generate TLS certificates for the following components:
+you will have to provision a [PKI Infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure) using openssl or opencfssl tool to bootstrap a Certificate Authority and generate TLS certificates for the following components:
 ### etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
 
 You can do all this from one of the master node and then copy the generated files to the other nodes. For this lab we will use the master-1 node. 
