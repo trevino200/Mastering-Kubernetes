@@ -7,6 +7,9 @@ Vagrant will automate the provisioning of the 5 VMs which will be used to create
 
 The topology details are as follow: 
 Note: you can change hostnames and networking paramaters in the Vagrantfile.
+  
+  
+       
 
 ## Provision your environment to host the Kubernetes HA cluster:
 
