@@ -8,10 +8,10 @@ In this section you will generate kubeconfig files for the `controller manager`,
 
 ### Kubernetes Public IP Address
 
-Each kubeconfig requires a Kubernetes API Server to connect to. To support high availability the IP address assigned to the  load balancer will be used. In our case it is `192.168.5.30`
+Each kubeconfig requires a Kubernetes API Server to connect to. To support high availability the IP address assigned to the load balancer will be used. In our case it is `192.168.50.30`
 
 ```
-LOADBALANCER_ADDRESS=192.168.5.30
+LOADBALANCER_ADDRESS=192.168.50.30
 ```
 
 ### The kube-proxy Kubernetes Configuration File
@@ -53,7 +53,7 @@ Generate a kubeconfig file for the `kube-controller-manager` service:
 
 ```
 {
-  kubectl config set-cluster kubernetes-the-hard-way \
+  kubectl config set-cluster Mastering-Kubernetes \
     --certificate-authority=ca.crt \
     --embed-certs=true \
     --server=https://127.0.0.1:6443 \
@@ -66,7 +66,7 @@ Generate a kubeconfig file for the `kube-controller-manager` service:
     --kubeconfig=kube-controller-manager.kubeconfig
 
   kubectl config set-context default \
-    --cluster=kubernetes-the-hard-way \
+    --cluster=Mastering-Kubernetes \
     --user=system:kube-controller-manager \
     --kubeconfig=kube-controller-manager.kubeconfig
 
@@ -87,7 +87,7 @@ Generate a kubeconfig file for the `kube-scheduler` service:
 
 ```
 {
-  kubectl config set-cluster kubernetes-the-hard-way \
+  kubectl config set-cluster MAstering-Kubernetes \
     --certificate-authority=ca.crt \
     --embed-certs=true \
     --server=https://127.0.0.1:6443 \
@@ -100,7 +100,7 @@ Generate a kubeconfig file for the `kube-scheduler` service:
     --kubeconfig=kube-scheduler.kubeconfig
 
   kubectl config set-context default \
-    --cluster=kubernetes-the-hard-way \
+    --cluster=Mastering-Kubernetes \
     --user=system:kube-scheduler \
     --kubeconfig=kube-scheduler.kubeconfig
 
@@ -120,7 +120,7 @@ Generate a kubeconfig file for the `admin` user:
 
 ```
 {
-  kubectl config set-cluster kubernetes-the-hard-way \
+  kubectl config set-cluster Mastering-Kubernetes \
     --certificate-authority=ca.crt \
     --embed-certs=true \
     --server=https://127.0.0.1:6443 \
@@ -133,7 +133,7 @@ Generate a kubeconfig file for the `admin` user:
     --kubeconfig=admin.kubeconfig
 
   kubectl config set-context default \
-    --cluster=kubernetes-the-hard-way \
+    --cluster=Mastering-Kubernetes \
     --user=admin \
     --kubeconfig=admin.kubeconfig
 
@@ -152,10 +152,10 @@ admin.kubeconfig
 
 ## Distribute the Kubernetes Configuration Files
 
-Copy the appropriate `kube-proxy` kubeconfig files to each worker instance:
+Copy the appropriate `kube-proxy` kubeconfig files to each worker node instance:
 
 ```
-for instance in worker-1 worker-2; do
+for instance in minion-1 minion-2; do
   scp kube-proxy.kubeconfig ${instance}:~/
 done
 ```
@@ -168,4 +168,4 @@ for instance in master-1 master-2; do
 done
 ```
 
-Next: [Generating the Data Encryption Config and Key](06-data-encryption-keys.md)
+Next: [Generating the Data Encryption Config and Key](Encryption-Key.md)
