@@ -82,5 +82,4 @@ Then reprovision. Only the missing VMs will be re-provisioned
 
 > vagrant up
 
-Next Step: [Provisioning the KPI](Provision the KPI infrastructure.md)
-Next: [Generating Kubernetes Configuration Files for Authentication](05-kubernetes-configuration-files.md)
+Next Step: [Provision the KPI](Provision the KPI Infrastructure.md)
