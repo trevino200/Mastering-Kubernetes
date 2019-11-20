@@ -17,4 +17,4 @@ Note: you can change hostnames and networking paramaters in the Vagrantfile.
 
 
 
-### Next Step: [Provision the lab environment for Kubernetes HA Cluster](Provision-the-Kubernetes-environment.md)
+### Next Step: [Just enough Containers to be dangerous](Just-Enough-Containers.md)
