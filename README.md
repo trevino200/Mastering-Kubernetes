@@ -1,6 +1,6 @@
 # Mastering Kubernetes..."The Hard Way"
 
-this lab Mastering Kubernetes will enable you to a Kubernetes high availabity cluster from the ground up. This is based on Kelsey Hightower book on installing Kubernetes the hard way and it is the best approach to truly understand and learn to troubleshoot Kubernetes.
+this lab Mastering Kubernetes will enable you to deploy a Kubernetes High Availabity cluster from the ground up. This is based on Kelsey Hightower book on installing Kubernetes the hard way and it is the best approach to truly understand and learn to troubleshoot Kubernetes.
 Kelsey showed how to install a HA cluster on GCP and in this lab, I will guide you on how to install on your laptop using virtual box running Ubuntu. 
 A Kubernetes cluster is composed of controllers called master nodes running all the control plane services that will be the COE or container orchestration enginer and the worker nodes where the containers will be creating in pods. Each pod in the worker nodes or apps will house one or more containers though the best practice is to have one container per pod.
 The kubernetes cluster will use 5 VMs with 2 master nodes, 2 worker nodes and 1 load balancer to front the master nodes. 
