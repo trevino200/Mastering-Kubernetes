@@ -1,8 +1,8 @@
-# Configuring kubectl for Remote Access
+# Configuring kubectl for Remote Administration
+Kubectl is used to manage your Kubernetes cluster and learning all the options for the kubectl will be key to administer the cluster.
+Kubectl will have to be trusted and authenticated with the API-server and we will generate a kubeconfig file for the `kubectl` command line utility based on the `admin` user credentials.
 
-In this lab you will generate a kubeconfig file for the `kubectl` command line utility based on the `admin` user credentials.
-
-> Run the commands in this lab from the same directory used to generate the admin client certificates.
+> Run the commands in this lab from the same directory used to generate the admin client certificates as it uses the certicates we generated in the previous sections
 
 ## The Admin Kubernetes Configuration File
 
@@ -12,9 +12,9 @@ Generate a kubeconfig file suitable for authenticating as the `admin` user:
 
 ```
 {
-  KUBERNETES_LB_ADDRESS=192.168.5.30
+  KUBERNETES_LB_ADDRESS=192.168.50.30
 
-  kubectl config set-cluster kubernetes-the-hard-way \
+  kubectl config set-cluster Mastering-Kubernetes \
     --certificate-authority=ca.crt \
     --embed-certs=true \
     --server=https://${KUBERNETES_LB_ADDRESS}:6443
@@ -23,11 +23,11 @@ Generate a kubeconfig file suitable for authenticating as the `admin` user:
     --client-certificate=admin.crt \
     --client-key=admin.key
 
-  kubectl config set-context kubernetes-the-hard-way \
-    --cluster=kubernetes-the-hard-way \
+  kubectl config set-context Mastering-Kubernetes \
+    --cluster=Mastering-Kubernetes \
     --user=admin
 
-  kubectl config use-context kubernetes-the-hard-way
+  kubectl config use-context Mastering-Kubernetes
 }
 ```
 
@@ -49,7 +49,7 @@ etcd-1               Healthy   {"health":"true"}
 etcd-0               Healthy   {"health":"true"}
 ```
 
-List the nodes in the remote Kubernetes cluster:
+List the nodes in the Kubernetes cluster :
 
 ```
 kubectl get nodes
@@ -59,9 +59,9 @@ kubectl get nodes
 
 ```
 NAME       STATUS   ROLES    AGE    VERSION
-worker-1   NotReady    <none>   118s   v1.13.0
-worker-2   NotReady    <none>   118s   v1.13.0
+minion-1   NotReady    <none>   118s   v1.13.0
+minion-2   NotReady    <none>   118s   v1.13.0
 ```
-Note: It is OK for the worker node to be in a `NotReady` state. Worker nodes will come into `Ready` state once networking is configured.
+Note: At this stage the worker node are in a `NotReady` state as we have not configured the networking. Once that is done, they will change to 'Ready' state.
 
-Next: [Deploy Pod Networking](12-configure-pod-networking.md)
+Next: [Configure the Pod Networking](Provisioning-POD-Network.md)
