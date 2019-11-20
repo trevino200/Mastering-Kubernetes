@@ -1,14 +1,11 @@
 # Bootstrapping the Kubernetes Control Plane
 
-In this lab you will bootstrap the Kubernetes control plane across 2 compute instances and configure it for high availability. You will also create an external load balancer that exposes the Kubernetes API Servers to remote clients. The following components will be installed on each node: Kubernetes API Server, Scheduler, and Controller Manager.
+In this lab you will bootstrap the Kubernetes control plane across 2 compute instances and configure it for high availability. You will also create an external load balancer that exposes the Kubernetes API Servers to remote clients.
+The Kubernetes control plane is composed of 3 components: the API Server, the Scheduler, and the Controller Manager. They each have a specific function within the control plane of each of the master nodes and we will be running them as services.
 
-## Prerequisites
+> The services names are kube-apiserver, kube-controller-manager and kube-scheduler.
 
-The commands in this lab must be run on each controller instance: `master-1`, and `master-2`. Login to each controller instance using SSH Terminal. Example:
-
-### Running commands in parallel with tmux
-
-[tmux](https://github.com/tmux/tmux/wiki) can be used to run commands on multiple compute instances at the same time. See the [Running commands in parallel with tmux](01-prerequisites.md#running-commands-in-parallel-with-tmux) section in the Prerequisites lab.
+All the commands in this lab must be run on each controller instance: `master-1`, and `master-2`. Login to each controller instance using SSH Terminal. 
 
 ## Provision the Kubernetes Control Plane
 
@@ -90,7 +87,7 @@ ExecStart=/usr/local/bin/kube-apiserver \\
   --etcd-cafile=/var/lib/kubernetes/ca.crt \\
   --etcd-certfile=/var/lib/kubernetes/etcd-server.crt \\
   --etcd-keyfile=/var/lib/kubernetes/etcd-server.key \\
-  --etcd-servers=https://192.168.5.11:2379,https://192.168.5.12:2379 \\
+  --etcd-servers=https://192.168.50.101:2379,https://192.168.50.102:2379 \\
   --event-ttl=1h \\
   --encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml \\
   --kubelet-certificate-authority=/var/lib/kubernetes/ca.crt \\
@@ -131,7 +128,7 @@ Documentation=https://github.com/kubernetes/kubernetes
 [Service]
 ExecStart=/usr/local/bin/kube-controller-manager \\
   --address=0.0.0.0 \\
-  --cluster-cidr=192.168.5.0/24 \\
+  --cluster-cidr=192.168.50.0/24 \\
   --cluster-name=kubernetes \\
   --cluster-signing-cert-file=/var/lib/kubernetes/ca.crt \\
   --cluster-signing-key-file=/var/lib/kubernetes/ca.key \\
@@ -180,7 +177,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Start the Controller Services
+### Start the Controller Services kube-apiserver kube-controller-manager kube-scheduler
 
 ```
 {
@@ -190,13 +187,11 @@ EOF
 }
 ```
 
-> Allow up to 10 seconds for the Kubernetes API Server to fully initialize.
 
-
-### Verification
+### Verify each Control Plane component status using kubectl on each master node:
 
 ```
-kubectl get componentstatuses --kubeconfig admin.kubeconfig
+kubectl get componentstatuses 
 ```
 
 ```
@@ -211,7 +206,7 @@ etcd-1               Healthy   {"health": "true"}
 
 ## The Kubernetes Frontend Load Balancer
 
-In this section you will provision an external load balancer to front the Kubernetes API Servers. The `kubernetes-the-hard-way` static IP address will be attached to the resulting load balancer.
+In this section you will provision an HA proxy external load balancer to front the Kubernetes API Servers. The static IP address will be attached to the resulting load balancer.
 
 
 ### Provision a Network Load Balancer
@@ -225,7 +220,7 @@ loadbalancer# sudo apt-get update && sudo apt-get install -y haproxy
 ```
 loadbalancer# cat <<EOF | sudo tee /etc/haproxy/haproxy.cfg 
 frontend kubernetes
-    bind 192.168.5.30:6443
+    bind 192.168.50.30:6443
     option tcplog
     mode tcp
     default_backend kubernetes-master-nodes
@@ -234,8 +229,8 @@ backend kubernetes-master-nodes
     mode tcp
     balance roundrobin
     option tcp-check
-    server master-1 192.168.5.11:6443 check fall 3 rise 2
-    server master-2 192.168.5.12:6443 check fall 3 rise 2
+    server master-1 192.168.50.101:6443 check fall 3 rise 2
+    server master-2 192.168.50.102:6443 check fall 3 rise 2
 EOF
 ```
 
@@ -248,7 +243,7 @@ loadbalancer# sudo service haproxy restart
 Make a HTTP request for the Kubernetes version info:
 
 ```
-curl  https://192.168.5.30:6443/version -k
+curl  https://192.168.50.30:6443/version -k
 ```
 
 > output
@@ -267,4 +262,4 @@ curl  https://192.168.5.30:6443/version -k
 }
 ```
 
-Next: [Bootstrapping the Kubernetes Worker Nodes](09-bootstrapping-kubernetes-workers.md)
+Next: [Bootstrapping the Kubernetes Worker Nodes](Bootstrapping-Workers-Nodes.md)
