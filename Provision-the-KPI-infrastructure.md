@@ -241,4 +241,4 @@ done
 
 > The `kube-proxy`, `kube-controller-manager`, `kube-scheduler`, and `kubelet` client certificates will be used to generate client authentication configuration files in the next lab. These certificates will be embedded into the client authentication configuration files. We will then copy those configuration files to the other master nodes.
 
-Next: [Generating Kubernetes Configuration Files for Authentication](kubernetes-configuration-files.md)
+### Next: [Generating Kubernetes Configuration Files for Authentication](Authentication-config-files.md)
