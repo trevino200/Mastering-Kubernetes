@@ -82,3 +82,4 @@ Then reprovision. Only the missing VMs will be re-provisioned
 
 > vagrant up
 
+##Next Step: [Provisioning the PKI infrastructure to secure communication between the Masters and the worker nodes.](Provision the KPI infrastructure.md)
