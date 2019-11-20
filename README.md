@@ -82,4 +82,4 @@ Then reprovision. Only the missing VMs will be re-provisioned
 
 > vagrant up
 
-Next Step: [Provisioning the PKI infrastructure](Provision the KPI infrastructure.md)
+Next Step: [Provisioning the KPI](Provision the KPI infrastructure.md)
