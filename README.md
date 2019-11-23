@@ -2,7 +2,7 @@
 The 4Cs of Cloud Native Security as defined by the CNCF require a good understanding of Kubernetes and Containers. The 4Cs encompass code,container,kubernetes(COE) and Cloud(hybrid, multi, private,on-prem) and are depending on each other. Securing each element of the 4Cs is critical.
 https://kubernetes.io/docs/concepts/security/overview/
            
-           ![header image](https://github.com/dean-houari/Mastering-Kubernetes/blob/master/LAB/4c.png)
+   ![header image](https://github.com/dean-houari/Mastering-Kubernetes/blob/master/LAB/4c.png)
              
 this lab Mastering Kubernetes will enable you to deploy a Kubernetes High Availabity cluster from the ground up. This is based on Kelsey Hightower book on installing Kubernetes the hard way and it is the best approach to truly understand and learn to troubleshoot Kubernetes.
 Kelsey showed how to install a HA cluster on GCP and in this lab, I will guide you on how to install on your laptop using virtual box running Ubuntu. 
