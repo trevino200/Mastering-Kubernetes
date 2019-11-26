@@ -26,27 +26,27 @@ Kubernetes is designed to deploy and manage apps in containers.
 
 ### The Kubernetes cluster is composed of two types of nodes:
 
-  The Master Nodes which host the Kubernetes control planes and manage the whole cluster.
+ > The Master Nodes which host the Kubernetes control planes and manage the whole cluster.
   
-  The Worker Nodes which hosts the applications that have been deployed in the cluster.
+ > The Worker Nodes which hosts the applications that have been deployed in the cluster.
   
 #### The Kubernetes Control plane is composed of 4 componenets that are managing the cluster:
 
-  The Controller Manager or kube-controller
+  > The Controller Manager or kube-controller
   
-  The Scheduler or kube-scheduler
+  > The Scheduler or kube-scheduler
   
-  The API server or kube-apiserver
+  > The API server or kube-apiserver
   
-  etcd or etcd database
+  > etcd or etcd database
   
 #### The Kubernetes Worker Nodes hosts the containerized apps are composed of 3 components:
 
-   Kubelet 
+  > Kubelet 
    
-   Kube-Proxy
+  > Kube-Proxy
    
-   Container runtime (Docker, cotainerd, rkt) ...(Docker being the most common one used)
+  > Container runtime (Docker, cotainerd, rkt) ...(Docker being the most common one used)
    
 ### https://kubernetes.io/docs/concepts/overview/components/
 
