@@ -20,7 +20,29 @@ Note: you can change hostnames and networking paramaters in the Vagrantfile.
   
 ## Understanding the Kubernetes Architecture:
 
-       
+With the rise of cloud netive applications and microservices where each app component are running as independent processes and exposed with a well know API, the need to find a new way to manage all these components became apparent. As these components grow in number as they scale out, it becomes very hard to manage them all while reducing the OPEX at the same time. Google devised a distributed management tool to deploy and manage these microservices components while managing to keep the operational costs low.
+Kubernetes allows the developper to run apps on hundreds or thousands of nodes as it were one large logical node.Kubernetes completely abstracts the underlying infrastructure and the developer does not have to understand or care about the details of the underlying infrastructure. Kubernetes uses a fully declarative policies to deploy, manage and scale the apps.
+Kubernetes is designed to deploy and manage apps in containers.
+
+### The Kubernetes cluster is composed of two types of nodes:
+
+  1- The Master Nodes which host the Kubernetes control planes and manage the whole cluster
+  2- The Worker Nodes which hosts the applications that have been deployed in the cluster.
+  
+#### The Kubernetes Control plane is composed of 4 componenets that are managing the cluster:
+
+  The Controller Manager or kube-controller
+  The Scheduler or kube-scheduler
+  The API server or kube-apiserver
+  etcd or etcd database
+  
+#### The Kubernetes Worker Nodes hosts the containerized apps are composed of 3 components:
+
+   Kubelet 
+   Kube-Proxy
+   Container runtime (Docker, cotainerd, rkt) ...(Docker being the most common one used)
+   
+### https://kubernetes.io/docs/concepts/overview/components/
 
 
 
