@@ -46,7 +46,7 @@ Kubernetes is designed to deploy and manage apps in containers.
    
   > Kube-Proxy
    
-  > Container runtime (Docker, cotainerd, rkt) ...(Docker being the most common one used)
+  > Container runtime (Docker, containerd, rkt) ...(Docker being the most common one used)
    
 ### https://kubernetes.io/docs/concepts/overview/components/
 
