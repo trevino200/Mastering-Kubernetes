@@ -16,6 +16,10 @@ The topology details are as follow:
 Note: you can change hostnames and networking paramaters in the Vagrantfile.
   
   ![header image](https://github.com/dean-houari/Mastering-Kubernetes/blob/master/LAB/K8stopo.png)
+  
+  
+## Understanding the Kubernetes Architecture:
+
        
 
 
