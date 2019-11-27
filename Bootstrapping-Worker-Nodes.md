@@ -8,7 +8,7 @@ We will now install the kubernetes components
 
 ## Prerequisites
 
-The commands in this lab must be run on first worker instance: `worker-1`. Login to first worker instance using SSH Terminal.
+The commands in this lab must be run on first worker instance: `minion-1`. Login to first worker node instance using SSH Terminal.
 
 ### Provisioning  Kubelet Client Certificates
 
@@ -16,7 +16,7 @@ Kubernetes uses a [special-purpose authorization mode](https://kubernetes.io/doc
 
 Generate a certificate and private key for one worker node:
 
-Worker1:
+minion-1:
 
 ```
 master-1$ cat > openssl-worker-1.cnf <<EOF
@@ -29,20 +29,20 @@ basicConstraints = CA:FALSE
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName = @alt_names
 [alt_names]
-DNS.1 = worker-1
+DNS.1 = minion-1
 IP.1 = 192.168.50.201
 EOF
 
 openssl genrsa -out worker-1.key 2048
 openssl req -new -key worker-1.key -subj "/CN=system:node:worker-1/O=system:nodes" -out worker-1.csr -config openssl-worker-1.cnf
-openssl x509 -req -in worker-1.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out worker-1.crt -extensions v3_req -extfile openssl-worker-1.cnf -days 1000
+openssl x509 -req -in worker-1.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out worker-1.crt -extensions v3_req -extfile openssl-minion-1.cnf -days 1000
 ```
 
 Results:
 
 ```
-worker-1.key
-worker-1.crt
+minion-1.key
+minion-1.crt
 ```
 
 ### The kubelet Kubernetes Configuration File
@@ -64,31 +64,31 @@ Generate a kubeconfig file for the first worker node:
     --server=https://${LOADBALANCER_ADDRESS}:6443 \
     --kubeconfig=worker-1.kubeconfig
 
-  kubectl config set-credentials system:node:worker-1 \
-    --client-certificate=worker-1.crt \
+  kubectl config set-credentials system:node:minion-1 \
+    --client-certificate=minion-1.crt \
     --client-key=worker-1.key \
     --embed-certs=true \
     --kubeconfig=worker-1.kubeconfig
 
   kubectl config set-context default \
     --cluster=Mastering-Kubernetes \
-    --user=system:node:worker-1 \
+    --user=system:node:minion-1 \
     --kubeconfig=worker-1.kubeconfig
 
-  kubectl config use-context default --kubeconfig=worker-1.kubeconfig
+  kubectl config use-context default --kubeconfig=minion-1.kubeconfig
 }
 ```
 
 Results:
 
 ```
-worker-1.kubeconfig
+minion-1.kubeconfig
 ```
 
 ### Copy certificates, private keys and kubeconfig files to the worker node:
 
 ```
-master-1$ scp ca.crt worker-1.crt worker-1.key worker-1.kubeconfig worker-1:~/
+master-1$ scp ca.crt minion-1.crt minion-1.key minion-1.kubeconfig minion-1:~/
 ```
 
 ### Download and Install Worker Binaries
