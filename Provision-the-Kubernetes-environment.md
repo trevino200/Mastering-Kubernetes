@@ -4,11 +4,11 @@ We will be using Virtual Box for the virtual machines and Vagrant to automate th
 
 First please install virtualbox, vagrant and git on your laptop
 
-VirtualBox: https://www.virtualbox.org/wiki/Downloads
+> VirtualBox: https://www.virtualbox.org/wiki/Downloads
 
-Vagrant: https://www.vagrantup.com/downloads.html
+> Vagrant: https://www.vagrantup.com/downloads.html
 
-Git: https://git-scm.com/
+> Git: https://git-scm.com/
 
 Download this github repository using git:
 
