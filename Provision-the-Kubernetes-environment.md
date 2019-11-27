@@ -48,7 +48,7 @@ If you would like to start over or if any of the VMs failed to provision succesf
 
 > vagrant destroy 
 
-> vagrant destroy 'nodename'
+> vagrant destroy <nodename>
 
 Then reprovision. Only the missing VMs will be re-provisioned
 
