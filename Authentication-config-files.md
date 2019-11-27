@@ -20,7 +20,7 @@ Generate a kubeconfig file for the `kube-proxy` service:
 
 ```
 {
-  kubectl config set-cluster kubernetes-the-hard-way \
+  kubectl config set-cluster Mastering-Kubernetes \
     --certificate-authority=ca.crt \
     --embed-certs=true \
     --server=https://${LOADBALANCER_ADDRESS}:6443 \
@@ -33,7 +33,7 @@ Generate a kubeconfig file for the `kube-proxy` service:
     --kubeconfig=kube-proxy.kubeconfig
 
   kubectl config set-context default \
-    --cluster=kubernetes-the-hard-way \
+    --cluster=Mastering-Kubernetes \
     --user=system:kube-proxy \
     --kubeconfig=kube-proxy.kubeconfig
 
@@ -87,7 +87,7 @@ Generate a kubeconfig file for the `kube-scheduler` service:
 
 ```
 {
-  kubectl config set-cluster MAstering-Kubernetes \
+  kubectl config set-cluster Mastering-Kubernetes \
     --certificate-authority=ca.crt \
     --embed-certs=true \
     --server=https://127.0.0.1:6443 \
