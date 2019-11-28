@@ -30,7 +30,7 @@ Kubernetes is designed to deploy and manage apps in containers.
   
  > The Worker Nodes which hosts the applications that have been deployed in the cluster.
   
-#### The Kubernetes Control plane is composed of 4 componenets that are managing the cluster:
+#### The Kubernetes Control plane is composed of 4 components that are managing the cluster:
 
   > The Controller Manager or kube-controller
   
