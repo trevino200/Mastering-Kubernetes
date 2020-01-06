@@ -258,7 +258,6 @@ root@master-1:~# service haproxy status
 
 Jan 06 04:39:47 master-1 systemd[1]: Starting HAProxy Load Balancer...
 Jan 06 04:39:47 master-1 systemd[1]: Started HAProxy Load Balancer.
-
 ...
 
 Make a HTTP request for the Kubernetes version info:
