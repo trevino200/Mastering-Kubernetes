@@ -148,12 +148,11 @@ master-1$ scp ca.crt minion-1.crt minion-1.key minion-1.kubeconfig minion-1:~/
 master-1$ scp ca.crt minion-2.crt minion-2.key minion-2.kubeconfig minion-2:~/
 ```
 
-### Download and Install Worker Binaries
+### Download and Install Worker Binaries on each worker nodes.. for this lab, minion-1 and minion-2
 
-Going forward all activities are to be done on the `worker-1` node.
 
 ```
-worker-1$ wget -q --show-progress --https-only --timestamping \
+minion-1$ wget -q --show-progress --https-only --timestamping \
   https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kubectl \
   https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kube-proxy \
   https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kubelet
@@ -162,7 +161,7 @@ worker-1$ wget -q --show-progress --https-only --timestamping \
 Create the installation directories:
 
 ```
-worker-1$ sudo mkdir -p \
+minion-1$ sudo mkdir -p \
   /etc/cni/net.d \
   /opt/cni/bin \
   /var/lib/kubelet \
@@ -193,7 +192,7 @@ Install the worker binaries:
 Create the `kubelet-config.yaml` configuration file:
 
 ```
-worker-1$ cat <<EOF | sudo tee /var/lib/kubelet/kubelet-config.yaml
+minion-1$ cat <<EOF | sudo tee /var/lib/kubelet/kubelet-config.yaml
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
 authentication:
@@ -218,7 +217,7 @@ EOF
 Create the `kubelet.service` systemd unit file:
 
 ```
-worker-1$ cat <<EOF | sudo tee /etc/systemd/system/kubelet.service
+minion-1$ cat <<EOF | sudo tee /etc/systemd/system/kubelet.service
 [Unit]
 Description=Kubernetes Kubelet
 Documentation=https://github.com/kubernetes/kubernetes
@@ -246,13 +245,13 @@ EOF
 ### Configure the Kubernetes Proxy
 
 ```
-worker-1$ sudo mv kube-proxy.kubeconfig /var/lib/kube-proxy/kubeconfig
+minion-1$ sudo mv kube-proxy.kubeconfig /var/lib/kube-proxy/kubeconfig
 ```
 
 Create the `kube-proxy-config.yaml` configuration file:
 
 ```
-worker-1$ cat <<EOF | sudo tee /var/lib/kube-proxy/kube-proxy-config.yaml
+minion-1$ cat <<EOF | sudo tee /var/lib/kube-proxy/kube-proxy-config.yaml
 kind: KubeProxyConfiguration
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
 clientConnection:
@@ -265,7 +264,7 @@ EOF
 Create the `kube-proxy.service` systemd unit file:
 
 ```
-worker-1$ cat <<EOF | sudo tee /etc/systemd/system/kube-proxy.service
+minion-1$ cat <<EOF | sudo tee /etc/systemd/system/kube-proxy.service
 [Unit]
 Description=Kubernetes Kube Proxy
 Documentation=https://github.com/kubernetes/kubernetes
@@ -308,7 +307,6 @@ master-1$ kubectl get nodes
 
 ```
 
-> Note: It is OK for the worker node to be in a NotReady state.
-  That is because we haven't configured Networking yet.
+> The worker node to be in a NotReady state because we haven't configured Networking yet and which we will do next..
 
 Next: [Configuring kubectl for remote management](Kubectl.md)
