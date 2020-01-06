@@ -232,13 +232,11 @@ service-account.crt
 
 #### Note: you will not be able to ssh between nodes by default. You will have to copy the public keys to the authorized_keys file under ~/.ssh folder.
 
-...
 Steps are:
   
    1- generate a ssh key on each node using the ssh-keygen command.
    
    2- copy the id_rsa.pub content to ~/.ssh/authorized_keys on the node you want to ssh to.
- ...
 
 ```
 for instance in master-1 master-2; do
