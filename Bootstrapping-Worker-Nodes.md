@@ -93,14 +93,14 @@ Generate a kubeconfig file for the first worker node:
 
   kubectl config set-credentials system:node:minion-1 \
     --client-certificate=minion-1.crt \
-    --client-key=worker-1.key \
+    --client-key=minion-1.key \
     --embed-certs=true \
-    --kubeconfig=worker-1.kubeconfig
+    --kubeconfig=minion-1.kubeconfig
 
   kubectl config set-context default \
     --cluster=Mastering-Kubernetes \
     --user=system:node:minion-1 \
-    --kubeconfig=worker-1.kubeconfig
+    --kubeconfig=minion-1.kubeconfig
 
   kubectl config use-context default --kubeconfig=minion-1.kubeconfig
 }
@@ -110,6 +110,35 @@ Results:
 
 ```
 minion-1.kubeconfig
+```
+
+```
+{
+  kubectl config set-cluster Mastering-Kubernetes \
+    --certificate-authority=ca.crt \
+    --embed-certs=true \
+    --server=https://${LOADBALANCER_ADDRESS}:6443 \
+    --kubeconfig=minion-2.kubeconfig
+
+  kubectl config set-credentials system:node:minion-2 \
+    --client-certificate=minion-2.crt \
+    --client-key=minion-2.key \
+    --embed-certs=true \
+    --kubeconfig=minion-2.kubeconfig
+
+  kubectl config set-context default \
+    --cluster=Mastering-Kubernetes \
+    --user=system:node:minion-2 \
+    --kubeconfig=minion-2.kubeconfig
+
+  kubectl config use-context default --kubeconfig=minion-2.kubeconfig
+}
+```
+
+Results:
+
+```
+minion-2.kubeconfig
 ```
 
 ### Copy certificates, private keys and kubeconfig files to the worker node:
