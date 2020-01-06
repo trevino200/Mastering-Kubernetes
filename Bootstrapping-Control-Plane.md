@@ -270,6 +270,7 @@ curl  https://192.168.50.30:6443/version-k
 > output
 
 ```
+root@master-1:~# curl  https://192.168.50.30:6443/version -k
 {
   "major": "1",
   "minor": "13",
@@ -280,7 +281,6 @@ curl  https://192.168.50.30:6443/version-k
   "goVersion": "go1.11.2",
   "compiler": "gc",
   "platform": "linux/amd64"
-}
 ```
 
 Next: [Bootstrapping the Kubernetes Worker Nodes](Bootstrapping-Worker-Nodes.md)
