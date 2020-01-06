@@ -89,7 +89,7 @@ Generate a kubeconfig file for the first worker node:
     --certificate-authority=ca.crt \
     --embed-certs=true \
     --server=https://${LOADBALANCER_ADDRESS}:6443 \
-    --kubeconfig=worker-1.kubeconfig
+    --kubeconfig=minion-1.kubeconfig
 
   kubectl config set-credentials system:node:minion-1 \
     --client-certificate=minion-1.crt \
