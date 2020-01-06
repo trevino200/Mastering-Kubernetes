@@ -206,7 +206,7 @@ etcd-1               Healthy   {"health": "true"}
 
 ## The Kubernetes Frontend Load Balancer
 
-In this section you will provision an HA proxy external load balancer to front the Kubernetes API Servers. The static IP address will be attached to the resulting load balancer.
+In this section you will provision an HAproxy external load balancer to front the Kubernetes API Servers. I am using HAproxy in this case since its free but you could use any other load balancer such NGINX for example.. The static IP address will be attached to the resulting load balancer. Please perform the installation steps below on the load balancer node <loadbalancer>:
 
 
 ### Provision a Network Load Balancer
