@@ -240,6 +240,27 @@ loadbalancer# sudo service haproxy restart
 
 ### Verification
 
+You can check the haproxy service status and it should be enabled
+
+...
+
+root@master-1:~# service haproxy status
+● haproxy.service - HAProxy Load Balancer
+   Loaded: loaded (/lib/systemd/system/haproxy.service; enabled; vendor preset: enabled)
+   Active: active (running) since Mon 2020-01-06 04:39:47 UTC; 36s ago
+     Docs: man:haproxy(1)
+           file:/usr/share/doc/haproxy/configuration.txt.gz
+ Main PID: 10302 (haproxy)
+    Tasks: 2 (limit: 2362)
+   CGroup: /system.slice/haproxy.service
+           ├─10302 /usr/sbin/haproxy -Ws -f /etc/haproxy/haproxy.cfg -p /run/haproxy.pid
+           └─10304 /usr/sbin/haproxy -Ws -f /etc/haproxy/haproxy.cfg -p /run/haproxy.pid
+
+Jan 06 04:39:47 master-1 systemd[1]: Starting HAProxy Load Balancer...
+Jan 06 04:39:47 master-1 systemd[1]: Started HAProxy Load Balancer.
+
+...
+
 Make a HTTP request for the Kubernetes version info:
 
 ```
