@@ -148,7 +148,7 @@ master-1$ scp ca.crt minion-1.crt minion-1.key minion-1.kubeconfig minion-1:~/
 master-1$ scp ca.crt minion-2.crt minion-2.key minion-2.kubeconfig minion-2:~/
 ```
 
-### Download and Install Worker Binaries on each worker nodes.. for this lab, minion-1 and minion-2
+### Download and Install Worker Binaries on EACH of the worker nodes.. for this lab, minion-1 and minion-2
 
 
 ```
@@ -290,15 +290,15 @@ EOF
 }
 ```
 
-> Remember to run the above commands on worker node: `worker-1`
+ONCE AGAIN PLEASE RUN ALL THESE COMMAND ON EACH OF THE WORKER NODES...
 
 ## Verification
 
+Verifying that the kubelet and kube-proxy services are active and running. This will indicates that each worker node has successfully authenticated and communicating with the master node cluster.
 
-List the registered Kubernetes nodes from the master node:
-
+On any of the master nodes
 ```
-master-1$ kubectl get nodes 
+kubectl get nodes 
 ```
 
 > output
