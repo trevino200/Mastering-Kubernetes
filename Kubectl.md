@@ -1,6 +1,6 @@
-# Configuring kubectl for Remote Administration
+# Configuring kubectl for Remote Administration.
 Kubectl is used to manage your Kubernetes cluster and learning all the options for the kubectl will be key to administer the cluster.
-Kubectl will have to be trusted and authenticated with the API-server and we will generate a kubeconfig file for the `kubectl` command line utility based on the `admin` user credentials.
+Kubectl will have to be trusted and authenticated with the API-server and we will generate a kubeconfig file for the `kubectl` command line utility based on the `admin` user credentials. This is only for the case when administrating your K8s cluster from a remote station other than the the master nodes..Please do not configure this on any of your master nodes
 
 > Run the commands in this lab from the same directory used to generate the admin client certificates as it uses the certicates we generated in the previous sections
 
