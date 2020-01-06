@@ -345,10 +345,5 @@ Jan 06 05:35:51 minion-1 kube-proxy[9505]: E0106 05:35:51.452679    9505 reflect
 lines 1-20/20 (END)
 ```
 
-```
-
-```
-
-> The worker node to be in a NotReady state because we haven't configured Networking yet and which we will do next..
 
 Next: [Configuring kubectl for remote management](Kubectl.md)
