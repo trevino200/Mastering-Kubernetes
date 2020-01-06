@@ -108,6 +108,8 @@ sudo ETCDCTL_API=3 etcdctl member list \
 > output
 
 ```
+7d5a7b2c05e535ab, started, master-1, https://192.168.50.101:2380, https://192.168.50.101:2379
+d35582170b08efd0, started, master-2, https://192.168.50.102:2380, https://192.168.50.102:2379
 
 ```
 
