@@ -296,12 +296,54 @@ ONCE AGAIN PLEASE RUN ALL THESE COMMAND ON EACH OF THE WORKER NODES...
 
 Verifying that the kubelet and kube-proxy services are active and running. This will indicates that each worker node has successfully authenticated and communicating with the master node cluster.
 
-On any of the master nodes
+On each of the worker nodes
 ```
-kubectl get nodes 
-```
+Output
+root@minion-1:~#
+root@minion-1:~# service kubelet status
+● kubelet.service - Kubernetes Kubelet
+   Loaded: loaded (/etc/systemd/system/kubelet.service; enabled; vendor preset: enabled)
+   Active: active (running) since Mon 2020-01-06 05:35:33 UTC; 8s ago
+     Docs: https://github.com/kubernetes/kubernetes
+ Main PID: 9501 (kubelet)
+    Tasks: 11 (limit: 547)
+   CGroup: /system.slice/kubelet.service
+           └─9501 /usr/local/bin/kubelet --config=/var/lib/kubelet/kubelet-config.yaml --image-pull-progress-deadline=2m
 
-> output
+Jan 06 05:35:41 minion-1 kubelet[9501]: E0106 05:35:41.427634    9501 reflector.go:134] k8s.io/kubernetes/pkg/kubelet/ku
+Jan 06 05:35:41 minion-1 kubelet[9501]: E0106 05:35:41.430354    9501 reflector.go:134] k8s.io/kubernetes/pkg/kubelet/ku
+Jan 06 05:35:41 minion-1 kubelet[9501]: E0106 05:35:41.509004    9501 kubelet.go:2266] node "minion-1" not found
+Jan 06 05:35:41 minion-1 kubelet[9501]: E0106 05:35:41.610125    9501 kubelet.go:2266] node "minion-1" not found
+Jan 06 05:35:41 minion-1 kubelet[9501]: E0106 05:35:41.711285    9501 kubelet.go:2266] node "minion-1" not found
+Jan 06 05:35:41 minion-1 kubelet[9501]: E0106 05:35:41.812748    9501 kubelet.go:2266] node "minion-1" not found
+Jan 06 05:35:41 minion-1 kubelet[9501]: E0106 05:35:41.913898    9501 kubelet.go:2266] node "minion-1" not found
+Jan 06 05:35:42 minion-1 kubelet[9501]: E0106 05:35:42.015444    9501 kubelet.go:2266] node "minion-1" not found
+Jan 06 05:35:42 minion-1 kubelet[9501]: E0106 05:35:42.117323    9501 kubelet.go:2266] node "minion-1" not found
+Jan 06 05:35:42 minion-1 kubelet[9501]: E0106 05:35:42.218598    9501 kubelet.go:2266] node "minion-1" not found
+lines 1-19/19 (END)
+root@minion-1:~# service kube-proxy status
+● kube-proxy.service - Kubernetes Kube Proxy
+   Loaded: loaded (/etc/systemd/system/kube-proxy.service; enabled; vendor preset: enabled)
+   Active: active (running) since Mon 2020-01-06 05:35:33 UTC; 17s ago
+     Docs: https://github.com/kubernetes/kubernetes
+ Main PID: 9505 (kube-proxy)
+    Tasks: 0 (limit: 547)
+   CGroup: /system.slice/kube-proxy.service
+           └─9505 /usr/local/bin/kube-proxy --config=/var/lib/kube-proxy/kube-proxy-config.yaml
+
+Jan 06 05:35:46 minion-1 kube-proxy[9505]: E0106 05:35:46.412460    9505 reflector.go:134] k8s.io/client-go/informers/fa
+Jan 06 05:35:47 minion-1 kube-proxy[9505]: E0106 05:35:47.415688    9505 reflector.go:134] k8s.io/client-go/informers/fa
+Jan 06 05:35:47 minion-1 kube-proxy[9505]: E0106 05:35:47.418841    9505 reflector.go:134] k8s.io/client-go/informers/fa
+Jan 06 05:35:48 minion-1 kube-proxy[9505]: E0106 05:35:48.429594    9505 reflector.go:134] k8s.io/client-go/informers/fa
+Jan 06 05:35:48 minion-1 kube-proxy[9505]: E0106 05:35:48.431331    9505 reflector.go:134] k8s.io/client-go/informers/fa
+Jan 06 05:35:49 minion-1 kube-proxy[9505]: E0106 05:35:49.434571    9505 reflector.go:134] k8s.io/client-go/informers/fa
+Jan 06 05:35:49 minion-1 kube-proxy[9505]: E0106 05:35:49.435775    9505 reflector.go:134] k8s.io/client-go/informers/fa
+Jan 06 05:35:50 minion-1 kube-proxy[9505]: E0106 05:35:50.443878    9505 reflector.go:134] k8s.io/client-go/informers/fa
+Jan 06 05:35:50 minion-1 kube-proxy[9505]: E0106 05:35:50.447970    9505 reflector.go:134] k8s.io/client-go/informers/fa
+Jan 06 05:35:51 minion-1 kube-proxy[9505]: E0106 05:35:51.448988    9505 reflector.go:134] k8s.io/client-go/informers/fa
+Jan 06 05:35:51 minion-1 kube-proxy[9505]: E0106 05:35:51.452679    9505 reflector.go:134] k8s.io/client-go/informers/fa
+lines 1-20/20 (END)
+```
 
 ```
 
