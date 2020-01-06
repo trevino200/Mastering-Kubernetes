@@ -14,10 +14,9 @@ The commands in this lab must be run on first worker instance: `minion-1`. Login
 
 Kubernetes uses a [special-purpose authorization mode](https://kubernetes.io/docs/admin/authorization/node/) called Node Authorizer, that specifically authorizes API requests made by [Kubelets](https://kubernetes.io/docs/concepts/overview/components/#kubelet). In order to be authorized by the Node Authorizer, Kubelets must use a credential that identifies them as being in the `system:nodes` group, with a username of `system:node:<nodeName>`. In this section you will create a certificate for each Kubernetes worker node that meets the Node Authorizer requirements.
 
-Generate a certificate and private key for one worker node:
+On the master node ie <master-1>, Generate a certificate and private key for each of the worker nodes:
 
-minion-1:
-
+For minion-1
 ```
 master-1$ cat > openssl-minion-1.cnf <<EOF
 [req]
@@ -34,7 +33,7 @@ IP.1 = 192.168.50.201
 EOF
 
 openssl genrsa -out minion-1.key 2048
-openssl req -new -key minion-1.key -subj "/CN=system:node:worker-1/O=system:nodes" -out worker-1.csr -config openssl-minion-1.cnf
+openssl req -new -key minion-1.key -subj "/CN=system:node:minion-1/O=system:nodes" -out minion-1.csr -config openssl-minion-1.cnf
 openssl x509 -req -in minion-1.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out minion-1.crt -extensions v3_req -extfile openssl-minion-1.cnf -days 1000
 ```
 
@@ -45,6 +44,34 @@ minion-1.key
 minion-1.crt
 ```
 
+For minion-2:
+
+```
+master-1$ cat > openssl-minion-2.cnf <<EOF
+[req]
+req_extensions = v3_req
+distinguished_name = req_distinguished_name
+[req_distinguished_name]
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = minion-2
+IP.1 = 192.168.50.202
+EOF
+
+openssl genrsa -out minion-2.key 2048
+openssl req -new -key minion-2.key -subj "/CN=system:node:minion-2/O=system:nodes" -out minion-2.csr -config openssl-minion-2.cnf
+openssl x509 -req -in minion-2.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out minion-2.crt -extensions v3_req -extfile openssl-minion-2.cnf -days 1000
+```
+
+Results:
+
+```
+minion-2.key
+minion-2.crt
+```
 ### The kubelet Kubernetes Configuration File
 
 When generating kubeconfig files for Kubelets the client certificate matching the Kubelet's node name must be used. This will ensure Kubelets are properly authorized by the Kubernetes [Node Authorizer](https://kubernetes.io/docs/admin/authorization/node/).
@@ -89,6 +116,7 @@ minion-1.kubeconfig
 
 ```
 master-1$ scp ca.crt minion-1.crt minion-1.key minion-1.kubeconfig minion-1:~/
+master-1$ scp ca.crt minion-2.crt minion-2.key minion-2.kubeconfig minion-2:~/
 ```
 
 ### Download and Install Worker Binaries
