@@ -13,5 +13,5 @@ cat >> /etc/hosts <<EOF
 192.168.50.102  master-2
 192.168.50.201  minion-1
 192.168.50.202  minion-2
-192.168.50.30  lb
+192.168.50.30   loadbalancer
 EOF
