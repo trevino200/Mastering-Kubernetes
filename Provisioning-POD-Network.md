@@ -1,6 +1,6 @@
 # Provisioning the Pod Network
 
-Kubernetes use a CNI or Container Network Interface to deploy a network overlay between all the nodes. There are many CNI flavors like flannel, Calico and Weave. For this lab, we will use the weave CNI - [weave](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/) as our networking option.
+Kubernetes use a CNI or Container Network Interface to deploy a network overlay between all the nodes. There are many CNI flavors like flannel, Calico and WeaveNet. For this lab, we will use the weave CNI - [weave](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/) as our networking option.
 
 ### Install CNI plugins
 
@@ -23,16 +23,16 @@ Weave uses POD CIDR of `10.32.0.0/12` by default.
 
 ## Verification
 
-List the registered Kubernetes nodes from the master node. we have to issue the command in the kube-system namespace with the -n kube-system.
+List the registered Kubernetes nodes from the master node.
 
 ```
-master-1$ kubectl get pods -n kube-system
+root@master-1:~# kubectl get nodes
+NAME       STATUS   ROLES    AGE     VERSION
+minion-1   Ready    <none>   4h18m   v1.13.0
+minion-2   Ready    <none>   4h7m    v1.13.0
+root@master-1:~#
+
 ```
 
-> output
-
-```
-
-```
 
 Next: [Using RBAC in the Kubernetes cluster](RBAC.md)
