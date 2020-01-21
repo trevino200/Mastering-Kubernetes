@@ -4,8 +4,8 @@ https://kubernetes.io/docs/concepts/security/overview/
            
    ![header image](https://github.com/dean-houari/Mastering-Kubernetes/blob/master/LAB/4c.png)
              
-This lab Mastering Kubernetes will enable you to deploy a Kubernetes High Availabity cluster from the ground up. This is based on Kelsey Hightower book on installing Kubernetes the hard way and it is the best approach to truly understand and learn to troubleshoot Kubernetes.
-Kelsey showed how to install a HA cluster on GCP and in this lab, I will guide you on how to install on your laptop using virtual box running Ubuntu. 
+## This lab  will enable you to deploy a Kubernetes High Availabity cluster from the ground up using ubuntu 16.x virtual machines on your laptop win or mac for the cluster and Docker for the containers. This is based on Kelsey Hightower book on installing Kubernetes the hard way. IMO it is the best approach to truly understand and learn to troubleshoot Kubernetes.
+
 A Kubernetes cluster is composed of controllers called master nodes running all the control plane services that will be the COE or container orchestration enginer and the worker nodes where the containers will be created in pods. Each pod in the worker nodes or apps will house one or more containers though the best practice is to have one container per pod.
 The kubernetes cluster will use 5 VMs with 2 master nodes, 2 worker nodes and 1 load balancer to front the master nodes. 
 Vagrant will automate the provisioning of the needed VMs which will be used to create the Kubernetes cluster. The cluster will be composed of 2 masters in a HA configuration, 2 worker nodes and 1 load balancer fronting the master nodes. The load balancer distributed the API requests from the worker nodes to each master node API server.
@@ -17,7 +17,9 @@ Note: you can change hostnames and networking paramaters in the Vagrantfile.
   
   ![header image](https://github.com/dean-houari/Mastering-Kubernetes/blob/master/LAB/K8stopo.png)
   
+## Training Agenda
   
+
 ## Understanding the Kubernetes Architecture:
 
 With the rise of cloud netive applications and microservices where each app component are running as independent processes and exposed with a well know API, the need to find a new way to manage all these components became apparent. As these components grow in number as they scale out, it becomes very hard to manage them all while reducing the OPEX at the same time. Google devised a distributed management tool to deploy and manage these microservices components while managing to keep the operational costs low.
