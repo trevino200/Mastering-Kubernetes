@@ -106,7 +106,7 @@ root@minion-3:~#
 root@minion-3:~#
 
 ```
-### Lets write our own app and wrap it in a container
+### Lets write our own app and wrap it in a container image.
 
 I will write a basic node.js app for a Hello World web server
 
@@ -135,7 +135,9 @@ dean:dockerimages dasig$ pwd
 /Users/dasig/dockerimages
 dean:dockerimages dasig$ ls
 Dockerfile	web-server.js
-dean:dockerimages dasig$ docker build -t testwebserver .
+```
+```
+dean:dockerimages dasig$ docker build -t testwebserver .    (the . search the dir for the Dockerfile)
 Sending build context to Docker daemon  3.072kB
 Step 1/4 : FROM node
 latest: Pulling from library/node
@@ -162,17 +164,25 @@ Step 4/4 : ENTRYPOINT ["node", "web-server.js"]
 Removing intermediate container 8bcfbeb50ddb
  ---> 23802c78f6a2
 Successfully built 23802c78f6a2
-Successfully tagged testwebserver:latest
-dean:dockerimages dasig$ 
-dean:dockerimages dasig$ 
+Successfully tagged testwebserver:latest  <<<<<< build succesful!!
+
+```
+The web-servernode.js container image named testwebserver should be listed in my locally available container image./
+```
 dean:dockerimages dasig$ docker images
 REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
-testwebserver               latest              23802c78f6a2        6 minutes ago       939MB
+testwebserver               latest              23802c78f6a2        6 minutes ago       939MB  <<<<<<<<<<<
 node                        latest              2a0d8959c8e1        3 days ago          939MB
 
-'''
+```
+Lets verfiy my app is running
 
+```
+dean:dockerimages dasig$ docker run testwebserver
+Server running at http://127.0.0.1:8181/    <<<<<<Success
 
+```
+My new container image can then be published to Docker Hub using the docker push command
 
 
 
