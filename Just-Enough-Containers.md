@@ -60,8 +60,44 @@ root@minion-3:~#
 
 ```
 
+```
+root@minion-3:~# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nginx               latest              5ad3bd0e67a9        4 days ago          127MB
+alpine              3.11.3              e7d92cdc71fe        8 days ago          5.59MB
+alpine              latest              e7d92cdc71fe        8 days ago          5.59MB
+busybox             latest              6d5fcfe5ff17        4 weeks ago         1.22MB
+root@minion-3:~#
+```
 
+```
+root@minion-3:~# docker rmi busybox
+Error response from daemon: conflict: unable to remove repository reference "busybox" (must force) - container 45427c2dd281 is using its referenced image 6d5fcfe5ff17
+root@minion-3:~#
+root@minion-3:~# docker rmi -f  busybox
+Untagged: busybox:latest
+Untagged: busybox@sha256:6915be4043561d64e0ab0f8f098dc2ac48e077fe23f488ac24b665166898115a
+Deleted: sha256:6d5fcfe5ff170471fcc3c8b47631d6d71202a1fd44cf3c147e50c8de21cf0648
+root@minion-3:~#
+root@minion-3:~#
+root@minion-3:~# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nginx               latest              5ad3bd0e67a9        4 days ago          127MB
+alpine              3.11.3              e7d92cdc71fe        8 days ago          5.59MB
+root@minion-3:~#
 
+```
+```
+root@minion-3:~# docker pull busybox
+Using default tag: latest
+latest: Pulling from library/busybox
+bdbbaa22dec6: Already exists
+Digest: sha256:6915be4043561d64e0ab0f8f098dc2ac48e077fe23f488ac24b665166898115a
+Status: Downloaded newer image for busybox:latest
+root@minion-3:~#
+root@minion-3:~#
+
+```
 
 
 
