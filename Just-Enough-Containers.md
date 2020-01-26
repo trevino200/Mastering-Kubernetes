@@ -59,7 +59,7 @@ b77066462f30        busybox             "Hello World"          10 minutes ago   
 root@minion-3:~#
 
 ```
-
+we can list all the container images available locally
 ```
 root@minion-3:~# docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -70,6 +70,7 @@ busybox             latest              6d5fcfe5ff17        4 weeks ago         
 root@minion-3:~#
 ```
 
+We can delate any container images with command below
 ```
 root@minion-3:~# docker rmi busybox
 Error response from daemon: conflict: unable to remove repository reference "busybox" (must force) - container 45427c2dd281 is using its referenced image 6d5fcfe5ff17
@@ -87,6 +88,7 @@ alpine              3.11.3              e7d92cdc71fe        8 days ago          
 root@minion-3:~#
 
 ```
+We can only download the container image without running the container using the docker pull command
 ```
 root@minion-3:~# docker pull busybox
 Using default tag: latest
@@ -98,6 +100,28 @@ root@minion-3:~#
 root@minion-3:~#
 
 ```
+### Lets write our own app and wrap it in a container
+
+I will write a basic node.js app for a Hello World web server
+
+```
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+```
+
 
 
 
