@@ -5,6 +5,71 @@ The rise of cloud native applications and the shift from monolithics apps to mic
 Monolithic apps are composed of various components that are tightly coupled together and running under the same OS process on a server whereas cloud native apps are composed of many components running on independent processes called microservices which communicate with each other using well defined APIs.Each of these components can be changed or scaled independently from each other. This allows microservices apps to scale out horizontaly.
 Providing a consistent environment for developers in order not to deal with OS changes, missing libraries etc.. and be able to continuously deploy their apps regardless of the udnerlying environment. Such requirement gave the rise for containers.
 
+The first step is install Docker and in the case docker is installed on a VM running Ubuntu. You can install Docker on Mac or Windows as well as any linux OS.You can find the installation guide on docker.com site.
+In this lab, the installation is done while provsioning the VM using Vagrant. The install-docker.sh script installs docker on the Ubuntu VM.
+
+All containers images are stored on the docker Hub repo but can installed locally as well. 
+The first step is to provision your Hello World container using busybox OS.
+
+```
+root@minion-3:~# docker run nginx echo "hello world"
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+8ec398bc0356: Pull complete
+a53c868fbde7: Pull complete
+79daf9dd140d: Pull complete
+Digest: sha256:70821e443be75ea38bdf52a974fd2271babd5875b2b1964f05025981c75a6717
+Status: Downloaded newer image for nginx:latest
+hello world
+root@minion-3:~#
+
+```
+you can verify that the or all container is running, you can use the docker ps -a command allow to list all containers.
+
+```
+root@minion-3:~# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS                         PORTS               NAMES
+ec89cd2cd8c5        nginx               "echo 'hello world'"   2 minutes ago       Exited (0) 2 minutes ago                           reverent_mendeleev
+960c1d33d449        alpine              "echo 'Hello World'"   5 minutes ago       Exited (0) 5 minutes ago                           determined_ardinghelli
+5b86f430b87a        busybox             "echo 'Hello World'"   6 minutes ago       Exited (0) 6 minutes ago                           quirky_knuth
+4d5859f0c29e        busybox             "Hello Worl"           6 minutes ago       Created                                            happy_swartz```  xenodochial_davinci
+5fbaaa6f310c        alpine              "echo 'Hello World'"   31 minutes ago      Exited (0) 31 minutes ago                          zealous_jackson
+642cf5af8b06        busybox             "echo 'Hello World'"   31 minutes ago      Exited (0) 31 minutes ago                          stoic_fermi
+45427c2dd281        busybox             "echo 'Hello World'"   About an hour ago   Exited (0) About an hour ago                       nostalgic_goldstine
+root@minion-3:~#
+
+```
+containers are assigned a random NAME and ID ie reverent_mendeleev and ec89cd2cd8c5. This ID and NAME are important as they will be needed to perform administration on the container. The NAME can be reconfigured to a simpler name.
+
+A container can be deleted using the docker rm command using the name or ID. Relisting the containers confirm that the container has been deleted
+
+```
+root@minion-3:~# docker rm  reverent_mendeleev
+reverent_mendeleev
+root@minion-3:~#
+root@minion-3:~# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS                         PORTS               NAMES
+960c1d33d449        alpine              "echo 'Hello World'"   9 minutes ago       Exited (0) 9 minutes ago                           determined_ardinghelli
+5b86f430b87a        busybox             "echo 'Hello World'"   10 minutes ago      Exited (0) 10 minutes ago                          quirky_knuth
+4d5859f0c29e        busybox             "Hello Worl"           10 minutes ago      Created                                            happy_swartz
+b77066462f30        busybox             "Hello World"          10 minutes ago      Created                                            xenodochial_davinci
+5fbaaa6f310c        alpine              "echo 'Hello World'"   35 minutes ago      Exited (0) 35 minutes ago                          zealous_jackson
+642cf5af8b06        busybox             "echo 'Hello World'"   36 minutes ago      Exited (0) 36 minutes ago                          stoic_fermi
+45427c2dd281        busybox             "echo 'Hello World'"   About an hour ago   Exited (0) About an hour ago                       nostalgic_goldstine
+root@minion-3:~#
+
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
