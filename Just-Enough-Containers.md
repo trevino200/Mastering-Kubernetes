@@ -179,7 +179,11 @@ Lets verfiy my app is running
 
 ```
 dean:dockerimages dasig$ docker run testwebserver
-Server running at http://127.0.0.1:8181/    <<<<<<Success
+Server running at http://127.0.0.1:8181/   
+
+root@minion-3:~#
+root@minion-3:~# curl http://localhost:8181
+Hello World
 
 ```
 My new container image can then be published to Docker Hub using the docker push command
