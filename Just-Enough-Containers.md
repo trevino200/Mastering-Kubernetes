@@ -188,6 +188,10 @@ Hello World
 ```
 My new container image can then be published to Docker Hub using the docker push command
 
+From a sysadmin persepctive, you can check all the information from any running container. 
+
+
+
 
 
 
