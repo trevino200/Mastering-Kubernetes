@@ -139,8 +139,7 @@ ADD web-server.js /web-server.js
 ENTRYPOINT ["node", "web-server.js"]
 
 ```
-dean:dockerimages dasig$ pwd
-/Users/dasig/dockerimages
+```
 dean:dockerimages dasig$ ls
 Dockerfile	web-server.js
 ```
