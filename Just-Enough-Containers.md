@@ -131,6 +131,14 @@ we can test the app by installing node and npm and verify the version after the 
 I would recommed creating a directory to store the Dockerfile and node.js application
 
 ```
+The Dockerfile is as follow
+############################
+FROM node
+MAINTAINER Dean Houari
+ADD web-server.js /web-server.js
+ENTRYPOINT ["node", "web-server.js"]
+
+```
 dean:dockerimages dasig$ pwd
 /Users/dasig/dockerimages
 dean:dockerimages dasig$ ls
